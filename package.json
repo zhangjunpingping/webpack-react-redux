@@ -6,7 +6,11 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack/webpack.dev.config.js",
     "build": "webpack --config webpack/webpack.prod.config.js --mode production",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "lint:ts": "tslint src/**/*.{ts,tsx}",
+    "lint:ts:fix": "tslint src/**/*.{ts,tsx} --fix",
+    "lint:style": "stylelint 'src/**/*.{css,less}'",
+    "lint:style:fix": "stylelint 'src/**/*.{css,less}' --fix"
   },
   "author": "",
   "license": "ISC",
@@ -50,6 +54,10 @@
     "stylelint-webpack-plugin": "^1.1.0",
     "terser-webpack-plugin": "^2.2.1",
     "ts-loader": "^6.2.1",
+    "tslint": "^5.20.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.7.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.3",
