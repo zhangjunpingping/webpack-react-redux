@@ -18,8 +18,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "paths": {
-      "@/*": ["src/*"],
-      "@tests/*": ["tests/*"]
+      "@/*": ["src/*"]
     }
   },
   "exclude": ["node_modules", "webpack", "scripts", "dist"]

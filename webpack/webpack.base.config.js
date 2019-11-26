@@ -1,16 +1,16 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 const commonConfig = {
-  // 入口文件
-  devtool: 'inline-source-map',
   entry: {
     app: [path.join(__dirname, '../src/index.tsx')]
   },
   output: {
     path: path.join(__dirname, '../dist'),
     filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[contenthash].js',
     publicPath: '/'
   },
   module: {
@@ -35,7 +35,6 @@ const commonConfig = {
       }
     ]
   },
-  // 配置相应的插件
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -48,8 +47,17 @@ const commonConfig = {
         removeStyleLinkTypeAttributes: true,
         useShortDoctype: true
       }
+    }),
+
+    new webpack.HashedModuleIdsPlugin(),
+
+    new StyleLintPlugin({
+      context: 'src',
+      files: '**/*.less',
+      syntax: 'less'
     })
   ],
+
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
