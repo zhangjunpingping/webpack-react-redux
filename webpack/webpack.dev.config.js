@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
 const commonConfig = require('./webpack.base.config')
@@ -38,7 +37,14 @@ const devConfig = {
     contentBase: path.join(__dirname, '../dist'),
     historyApiFallback: true,
     host: 'localhost',
-    disableHostCheck: true
+    disableHostCheck: true,
+    proxy: {
+      '/api': {
+        target: 'http://106.13.170.180:92/mock/10',
+        secure: false,
+        changeOrigin: true
+      }
+    }
   },
   resolve: {
     alias: {

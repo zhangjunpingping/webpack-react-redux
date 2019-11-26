@@ -6,8 +6,11 @@ import menu from './navigator'
 const { SubMenu } = Menu
 const { Sider } = Layout
 
-class SideMenu extends Component<{}, any> {
+class SideMenu extends Component<any, any> {
   // 递归生成左侧菜单树
+  state = {
+    selectedKey: ['/form']
+  }
   recurMenu = routerArr =>
     routerArr.map(item => {
       if (item.children && item.children.length > 0) {
@@ -40,7 +43,11 @@ class SideMenu extends Component<{}, any> {
   render() {
     return (
       <Sider className="left-content slide-style" width={256}>
-        <Menu style={{ width: 256 }} mode="inline">
+        <Menu
+          style={{ width: 256 }}
+          mode="inline"
+          defaultSelectedKeys={[this.props.location.pathname]}
+        >
           {this.recurMenu(menu)}
         </Menu>
       </Sider>
